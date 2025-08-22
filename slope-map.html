@@ -1,0 +1,104 @@
+<!-- Masthead-->
+<header class="masthead bg-primary text-white" style="background-color: #145a32 !important;">
+    <div class="masthead-container">
+
+        <!-- Masthead Avatar Image -->
+        <img class="masthead-avatar" 
+             src="assets/img/portfolio/SlopeMap.png" 
+             alt="Slope Maps" />
+
+        <!-- Masthead Heading -->
+        <h1 class="masthead-heading">Slope Map Project</h1>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+                <img src="assets/img/portfolio/rose.png" alt="Rose Icon" />
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- Masthead Subheadings -->
+         <p class="masthead-subheading" style="padding-bottom: 25px;">Steps of the project:</style></p>
+         <div class="divider-custom-line"></div>
+         <hr style="width:50%; margin:20px auto; border:1px dashed white;">
+
+             <div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+                <p class="masthead-subheading" style="margin: 0; text-underline-offset: 2px;">CONUS DEM data was taken to find databases of coordinate bins per state</p>
+                <p class="image">
+                    <img src="assets/img/portfolio/fulltif.JPG" style="width:250px; height:200px;" alt="CONUS DEM" />
+                </p>
+                <hr style="width:50%; margin:20px auto; border:1px dashed white;">
+
+                <p class="masthead-subheading" style="margin:0; text-underline-offset: 2px;">Clipped files of both lidar and slope per state created</p>
+                <p class="image">
+                    <img src="assets/img/portfolio/clipslopetifs.png" style="width:250px; height:200px;" alt="Clipped DEM" />
+                </p>
+                <hr style="width:50%; margin:20px auto; border:1px dashed white;">
+
+                <p class="masthead-subheading" style="margin:0; text-underline-offset: 2px;">Files were analyzed to find summary slope statistics</p>
+                <p class="image">
+                    <img src="assets/img/portfolio/slopehisto.png" style="width:250px; height:200px;" alt="Summary Statistics" />
+                </p>
+                <hr style="width:50%; margin:20px auto; border:1px dashed white;">
+
+            </div>
+
+
+</div>
+
+
+    </div>
+</header>
+
+<style>
+/* Force full centering */
+.masthead-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.masthead-avatar {
+    width: 200px;
+    height: 340px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+}
+
+.masthead-heading {
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.divider-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.divider-custom-line {
+    flex: 1;
+    height: 2px;
+    background: white;
+}
+
+.divider-custom-icon img {
+    width: 40px;
+    height: 40px;
+    margin: 0 0.5rem;
+}
+
+.masthead-subheading {
+    font-weight: 300;
+    margin: 0.25rem 0;
+    color: white;
+}
+</style>
