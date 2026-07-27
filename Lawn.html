@@ -46,23 +46,25 @@
 
   .img-slot{
     width:100%;
-    aspect-ratio:4/3;
     border-radius:6px;
     border:1px solid var(--rule);
-    background:
-      linear-gradient(150deg, rgba(95,122,94,0.14), rgba(194,121,95,0.10)),
-      repeating-linear-gradient(-45deg, rgba(43,42,32,0.05) 0 1px, transparent 1px 13px);
-    display:flex;
-    align-items:flex-end;
     overflow:hidden;
-  }
-  .img-slot__tag{
+    background:var(--paper);
+}
+
+.img-slot img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+.img-slot__tag{
     width:100%;
     padding:10px 13px;
     font-size:12.5px;
     color:var(--ink-soft);
-    background:linear-gradient(to top, rgba(246,241,230,0.92), rgba(246,241,230,0));
-  }
+    background:rgba(246,241,230,0.92);
+}
 
   header.hero{padding:70px 0 30px;}
   .hero__eyebrow{font-size:13px;font-style:italic;color:var(--sage);margin-bottom:14px;}
@@ -128,8 +130,8 @@
   <h2 class="section-title">Methods</h2>
 
   <div class="row">
-    <div class="img-slot"><span class="img-slot__tag">image — NDVI workflow / NAIP imagery in GEE</span></div>
-          <img src="assets/img/portfolio/lawnmap.png" alt="lawnmap">
+    <div class="img-slot"><img src="assets/img/portfolio/lawnmap.png" alt="lawnmap"></div>
+          
 
     <div class="copy">
       <h3>Estimating lawn cover from NDVI</h3>
@@ -138,8 +140,8 @@
   </div>
 
   <div class="row">
-    <div class="img-slot"><span class="img-slot__tag">image — model comparison</span></div>
-         <img src="assets/img/portfolio/urban_gis_glue_lawnmodelfig.png" alt="urbancomp">
+    <div class="img-slot"><img src="assets/img/portfolio/urban_gis_glue_lawnmodelfig.png" alt="urbancomp"></div>
+         
 
     <div class="copy">
       <h3>Regression against UrbanWatch model</h3>
@@ -148,8 +150,8 @@
   </div>
 
   <div class="row">
-    <div class="img-slot"><span class="img-slot__tag">image — census-block analysis </span></div>
-          <img src="assets/img/portfolio/censusblocks.png" alt="censusblocks">
+    <div class="img-slot"><img src="assets/img/portfolio/censusblocks.png" alt="censusblocks"></div>
+          
 
     <div class="copy">
       <h3>Results</h3>

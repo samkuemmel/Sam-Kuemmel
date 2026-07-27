@@ -71,29 +71,25 @@
   .img-slot{
     position:relative;
     width:100%;
-    aspect-ratio:4/3;
     border-radius:6px;
-    background:
-      linear-gradient(150deg, rgba(92,125,90,0.14), rgba(176,106,69,0.10)),
-      repeating-linear-gradient(-45deg, rgba(38,36,26,0.05) 0 1px, transparent 1px 13px);
     border:1px solid var(--rule);
-    display:flex;
-    align-items:flex-end;
     overflow:hidden;
-  }
-  .img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:6px;}
-  .img-slot__tag{
-    position:relative;
-    z-index:1;
+    background:var(--paper);
+}
+
+.img-slot img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+.img-slot__tag{
     width:100%;
     padding:10px 13px;
     font-size:12.5px;
     color:var(--ink-soft);
-    background:linear-gradient(to top, rgba(244,239,225,0.92), rgba(244,239,225,0));
-  }
-  .img-slot--wide{aspect-ratio:16/10;}
-  .img-slot--tall{aspect-ratio:3/4;}
-  .img-slot--poster{aspect-ratio:0.75/1;}
+    background:rgba(244,239,225,0.92);
+}
 
   /* ---------- hero ---------- */
   .hero{
@@ -276,7 +272,6 @@
     <div class="methods-list">
       <div class="method-row">
         <div class="img-slot">
-          <span class="img-slot__tag">image — subroutine / model schematic</span>
           <img src="assets/img/portfolio/biomeEmodelstructure.png" alt="Comparing various stress scenarios">
         
         </div>
@@ -288,7 +283,6 @@
 
       <div class="method-row">
         <div class="img-slot">
-          <span class="img-slot__tag">image - Comparing various stress scenarios</span>
           <img src="assets/img/portfolio/amazon_gpp_poster.png" alt="Comparing various stress scenarios">
         
         </div>
@@ -301,7 +295,6 @@
 
       <div class="method-row">
         <div class="img-slot">
-          <span class="img-slot__tag">image — AC1 critical slowing surface </span>
           <img src="assets/img/portfolio/Cerrado_soilC_critical_surface.png" alt="Comparing various stress scenarios">
        
           
@@ -315,7 +308,6 @@
 
       <div class="method-row">
         <div class="img-slot">
-          <span class="img-slot__tag">image — spatiotemporal GPP changes</span>
           <img src="assets/img/portfolio/spatiotemporal-change.png" alt="Comparing various stress scenarios">
 
         </div>
@@ -341,21 +333,18 @@
     <div class="gallery-grid">
       <figure class="g1">
         <div class="img-slot img-slot--tall">
-          <span class="img-slot__tag">image — Soil Carbon AC1 trends, Cerrado </span>
           <img src="assets/img/portfolio/Cerrado_unbin_soilCAc1.png" alt="Comparing various stress scenarios">
 
         </div>
       </figure>
       <figure>
         <div class="img-slot img-slot--wide">
-          <span class="img-slot__tag">image — Amazon soil carbon scenarios</span>
           <img src="assets/img/portfolio/Amazon_soilC_trajectories.png" alt="Comparing various stress scenarios">
 
         </div>
       </figure>
       <figure>
         <div class="img-slot img-slot--wide">
-          <span class="img-slot__tag">image — Streamlit emulator visualizer</span>
         <img src="assets/img/portfolio/NorthernCerradoExample.png" alt="Comparing various stress scenarios">
 
         </div>
