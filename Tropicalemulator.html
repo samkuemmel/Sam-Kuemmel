@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emulator for Tropical Deforestation in the NASA-GISS BiomeE model </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,500;0,9..144,600;1,9..144,450;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --moss-950:#1b3226;
+    --moss-800:#2b4a38;
+    --fern:#5c7d5a;
+    --paper:#f4efe1;
+    --clay:#b06a45;
+    --gold:#c99a4e;
+    --ink:#26241a;
+    --ink-soft:#5a5642;
+    --rule:rgba(38,36,26,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Source Serif 4", Georgia, serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  em, .placeholder{
+    font-style:italic;
+    color:var(--ink-soft);
+  }
+  .placeholder{
+    display:block;
+    font-size:15px;
+    opacity:0.75;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 20px;}
+    body{font-size:16px;}
+  }
+
+  /* leaf divider */
+  .leaf-divider{
+    display:flex;
+    justify-content:center;
+    padding:6px 0;
+    opacity:0.65;
+  }
+
+  /* ---------- image placeholder ---------- */
+  .img-slot{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/3;
+    border-radius:6px;
+    background:
+      linear-gradient(150deg, rgba(92,125,90,0.14), rgba(176,106,69,0.10)),
+      repeating-linear-gradient(-45deg, rgba(38,36,26,0.05) 0 1px, transparent 1px 13px);
+    border:1px solid var(--rule);
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+  }
+  .img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:6px;}
+  .img-slot__tag{
+    position:relative;
+    z-index:1;
+    width:100%;
+    padding:10px 13px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    background:linear-gradient(to top, rgba(244,239,225,0.92), rgba(244,239,225,0));
+  }
+  .img-slot--wide{aspect-ratio:16/10;}
+  .img-slot--tall{aspect-ratio:3/4;}
+  .img-slot--poster{aspect-ratio:0.75/1;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:80px 0 44px;
+    overflow:hidden;
+  }
+  .hero__eyebrow{
+    font-size:13px;
+    font-style:italic;
+    color:var(--fern);
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 4.6vw, 3.1rem);
+    max-width:16ch;
+    color:var(--moss-950);
+  }
+  .hero .placeholder{
+    margin-top:18px;
+    max-width:48ch;
+    font-size:17px;
+  }
+  .hero__sprig{
+    position:absolute;
+    top:20px; right:-30px;
+    width:180px;
+    opacity:0.5;
+  }
+  @media (max-width:700px){ .hero__sprig{display:none;} }
+
+  /* ---------- sections ---------- */
+  section{padding:46px 0;}
+  .section-title{
+    font-size:1.35rem;
+    margin-bottom:6px;
+    color:var(--moss-950);
+  }
+  .section-sub{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin-bottom:26px;
+  }
+
+  /* ---------- poster ---------- */
+  .poster__inner{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:36px;
+    align-items:center;
+  }
+  @media (max-width:680px){ .poster__inner{grid-template-columns:1fr;} }
+  .poster__inner h2{font-size:1.4rem;max-width:20ch;color:var(--moss-950);}
+
+  /* ---------- methods ---------- */
+  .methods-list{
+    display:flex;
+    flex-direction:column;
+    gap:34px;
+  }
+  .method-row{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:26px;
+    align-items:center;
+  }
+  .method-row:nth-child(even){grid-template-columns:1.15fr 0.85fr;}
+  .method-row:nth-child(even) .method-copy{order:2;}
+  @media (max-width:680px){
+    .method-row, .method-row:nth-child(even){grid-template-columns:1fr;}
+    .method-row:nth-child(even) .method-copy{order:0;}
+  }
+  .method-copy h3{
+    font-size:1.15rem;
+    color:var(--moss-950);
+  }
+  .method-copy .placeholder{margin-top:8px;}
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    grid-template-rows:auto auto;
+    gap:18px;
+  }
+  .gallery-grid .g1{grid-row:1 / span 2;}
+  @media (max-width:680px){
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-grid .g1{grid-row:auto;}
+  }
+  figure{margin:0;}
+  figcaption{margin-top:6px;}
+
+  /* ---------- notes ---------- */
+  .notes-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .notes-list div{
+    padding:11px 0;
+    border-bottom:1px solid var(--rule);
+    font-size:15px;
+    color:var(--ink-soft);
+    display:flex;
+    gap:10px;
+  }
+  .notes-list div:first-child{border-top:1px solid var(--rule);}
+  .notes-list span.mark{color:var(--clay);flex:none;}
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:36px 0 60px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  footer .brand{
+    font-family:"Fraunces", serif;
+    color:var(--moss-950);
+    font-size:15px;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="hero__sprig" viewBox="0 0 100 200" aria-hidden="true">
+    <path d="M50 200 C50 140 40 120 50 60" stroke="#5c7d5a" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M50 150 C35 145 25 130 22 112" stroke="#5c7d5a" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M50 120 C65 114 76 100 79 84" stroke="#5c7d5a" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M50 90 C36 85 27 72 24 58" stroke="#5c7d5a" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M50 65 C63 58 72 46 75 32" stroke="#5c7d5a" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <circle cx="50" cy="55" r="4" fill="#c99a4e" opacity="0.7"/>
+  </svg>
+  <div class="wrap">
+    <h1>Emulator for Tropical Deforestation in the NASA-GISS BiomeE model</h1>
+    <span class="placeholder">While the Amazon Rainforest biome is well known, the Cerrado, a vast, woody savanna, is a Brazilian biome likewise facing deforestation pressure. Using a demographic vegetation model (i.e., BiomeE) developed at NASA Goddard Institute of Space Studies, impacts of deforestation and rainfall on these two biomes were analyzed. </span>
+  </div>
+</header>
+
+<div class="wrap"><div class="leaf-divider">
+  <svg width="26" height="14" viewBox="0 0 26 14"><path d="M1 7 C7 -2 19 -2 25 7 C19 4 7 4 1 7Z" fill="#5c7d5a" opacity="0.55"/></svg>
+</div></div>
+
+<!-- ============ POSTER ============ -->
+<section class="poster">
+  <div class="wrap poster__inner">
+    <div class="img-slot img-slot--poster">
+      <span class="img-slot__tag">poster — "Brazilian Tropical Rainforest Dynamics under Deforestation"</span>
+      <img src="assets/img/portfolio/CUPPPoster.png" alt="CUPPPoster">
+
+    </div>
+    <div>
+      <h2>The original poster</h2>
+      <span class="placeholder">Columbia University CUPP Symposium; abstract of project also submitted to AGU Fall 26 Meeting</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="leaf-divider">
+  <svg width="26" height="14" viewBox="0 0 26 14"><path d="M1 7 C7 -2 19 -2 25 7 C19 4 7 4 1 7Z" fill="#5c7d5a" opacity="0.55"/></svg>
+</div></div>
+
+<!-- ============ METHODS ============ -->
+<section class="methods">
+  <div class="wrap">
+    <h2 class="section-title">Methods</h2>
+    <p class="section-sub">Created new subroutine, neural network emulator -- a machine learning method -- for analysis </p>
+
+    <div class="methods-list">
+      <div class="method-row">
+        <div class="img-slot">
+          <span class="img-slot__tag">image — subroutine / model schematic</span>
+          <img src="assets/img/portfolio/biomeEmodelstructure.png" alt="Comparing various stress scenarios">
+        
+        </div>
+        <div class="method-copy">
+          <h3>The deforestation subroutine</h3>
+          <span class="placeholder">Harvests fraction of eligible trees in each cohort, returns biomass</span>
+        </div>
+      </div>
+
+      <div class="method-row">
+        <div class="img-slot">
+          <span class="img-slot__tag">image - Comparing various stress scenarios</span>
+          <img src="assets/img/portfolio/amazon_gpp_poster.png" alt="Comparing various stress scenarios">
+        
+        </div>
+        <div class="method-copy">
+          <h3>By-biome comparison</h3>
+          <span class="placeholder">Clipped results to each biome, analyzed scenarios from the BiomeE Model </span>
+
+        </div>
+      </div>
+
+      <div class="method-row">
+        <div class="img-slot">
+          <span class="img-slot__tag">image — AC1 critical slowing surface </span>
+          <img src="assets/img/portfolio/Cerrado_soilC_critical_surface.png" alt="Comparing various stress scenarios">
+       
+          
+        </div>
+        <div class="method-copy">
+          <h3>Trained biome-aggregated neural network emulator </h3>
+          <span class="placeholder">Found AC1, a resiliency metric, across thousands of scenarios</span>
+
+        </div>
+      </div>
+
+      <div class="method-row">
+        <div class="img-slot">
+          <span class="img-slot__tag">image — spatiotemporal GPP changes</span>
+          <img src="assets/img/portfolio/spatiotemporal-change.png" alt="Comparing various stress scenarios">
+
+        </div>
+        <div class="method-copy">
+          <h3>Running spatiotemporal emulator over biomes </h3>
+          <span class="placeholder">Using emulator inference loop, calculated and plotted change over time. 15 year gpp change below.  </span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="leaf-divider">
+  <svg width="26" height="14" viewBox="0 0 26 14"><path d="M1 7 C7 -2 19 -2 25 7 C19 4 7 4 1 7Z" fill="#5c7d5a" opacity="0.55"/></svg>
+</div></div>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery">
+  <div class="wrap">
+    <h2 class="section-title">Favorite additional graphs</h2>
+    
+    <div class="gallery-grid">
+      <figure class="g1">
+        <div class="img-slot img-slot--tall">
+          <span class="img-slot__tag">image — Soil Carbon AC1 trends, Cerrado </span>
+          <img src="assets/img/portfolio/Cerrado_unbin_soilCAc1.png" alt="Comparing various stress scenarios">
+
+        </div>
+      </figure>
+      <figure>
+        <div class="img-slot img-slot--wide">
+          <span class="img-slot__tag">image — Amazon soil carbon scenarios</span>
+          <img src="assets/img/portfolio/Amazon_soilC_trajectories.png" alt="Comparing various stress scenarios">
+
+        </div>
+      </figure>
+      <figure>
+        <div class="img-slot img-slot--wide">
+          <span class="img-slot__tag">image — Streamlit emulator visualizer</span>
+        <img src="assets/img/portfolio/NorthernCerradoExample.png" alt="Comparing various stress scenarios">
+
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="leaf-divider">
+  <svg width="26" height="14" viewBox="0 0 26 14"><path d="M1 7 C7 -2 19 -2 25 7 C19 4 7 4 1 7Z" fill="#5c7d5a" opacity="0.55"/></svg>
+</div></div>
+
+<!-- ============ NOTES ============ -->
+<section class="notes">
+  <div class="wrap">
+    <h2 class="section-title">Notes</h2>
+    <div class="notes-list">
+      <div><span class="mark">·</span>aggregated emulator: &gt;99% R² (5-fold CV)</div>
+      <div><span class="mark">·</span>Amazon AC1 &gt; Cerrado across GPP, plantC, soilC</div>
+      <div><span class="mark">·</span>rainfall and deforestation interact non-linearly</div>
+      <div><span class="mark">·</span>Amazon ecosystem variable declines stronger under deforestation</div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="brand">Rainforest Dynamics under Deforestation</div>
+  <div>Sam Kuemmel</div>
+</footer>
+
+</body>
+</html>
