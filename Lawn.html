@@ -8,110 +8,219 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,500;1,9..144,450&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --sage:#5f7a5e;
-    --sage-dim:#8ba088;
-    --blush:#c2795f;
-    --paper:#f6f1e6;
-    --ink:#2b2a20;
-    --ink-soft:#605c48;
-    --rule:rgba(43,42,32,0.14);
-  }
-  *{box-sizing:border-box;}
-  body{
+:root{
+    --primary-green:#145a32;
+    --dark-green:#0f3d22;
+    --white:#ffffff;
+    --ink:#212529;
+    --ink-soft:#6c757d;
+    --rule:rgba(0,0,0,0.12);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
     margin:0;
-    background:var(--paper);
+    background:#ffffff;
     color:var(--ink);
     font-family:"Source Serif 4", Georgia, serif;
     font-size:17px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3{
+}
+
+h1,h2,h3{
     font-family:"Fraunces", Georgia, serif;
     font-weight:500;
     letter-spacing:-0.01em;
     margin:0;
-    color:var(--ink);
-  }
-  .placeholder{
+    color:var(--primary-green);
+}
+
+.placeholder{
     display:block;
     font-style:italic;
     color:var(--ink-soft);
     font-size:15px;
-  }
-  img{max-width:100%;display:block;}
-  .wrap{max-width:760px;margin:0 auto;padding:0 30px;}
-  @media (max-width:600px){.wrap{padding:0 20px;} body{font-size:16px;}}
+}
 
-  .img-slot{
+img{
+    max-width:100%;
+    display:block;
+}
+
+.wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 40px;
+}
+
+@media(max-width:700px){
+    .wrap{
+        padding:0 20px;
+    }
+
+    body{
+        font-size:16px;
+    }
+}
+
+
+/* ================= HERO ================= */
+
+header.hero{
     width:100%;
-    border-radius:6px;
+    background:var(--primary-green);
+    color:white;
+    padding:90px 0 70px;
+    text-align:center;
+}
+
+.hero h1{
+    color:white;
+    font-size:clamp(2rem,5vw,3rem);
+    max-width:900px;
+    margin:auto;
+}
+
+.hero .placeholder{
+    margin-top:20px;
+    max-width:650px;
+    margin-left:auto;
+    margin-right:auto;
+    color:white;
+    opacity:0.9;
+    font-size:18px;
+}
+
+
+/* ================= DIVIDER ================= */
+
+.divider{
+    display:flex;
+    justify-content:center;
+    padding:35px 0;
+}
+
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:55px 0;
+}
+
+.section-title{
+    font-size:1.5rem;
+    margin-bottom:35px;
+    color:var(--primary-green);
+}
+
+
+/* ================= IMAGE CARDS ================= */
+
+.img-slot{
+    width:100%;
+    border-radius:8px;
     border:1px solid var(--rule);
     overflow:hidden;
-    background:var(--paper);
+    background:white;
+    box-shadow:0 5px 18px rgba(0,0,0,0.10);
 }
 
 .img-slot img{
     width:100%;
-    height:auto;
-    display:block;
+    height:320px;
+    object-fit:cover;
 }
 
 .img-slot__tag{
-    width:100%;
-    padding:10px 13px;
-    font-size:12.5px;
+    padding:12px 15px;
+    font-size:13px;
     color:var(--ink-soft);
-    background:rgba(246,241,230,0.92);
+    background:white;
 }
 
-  header.hero{padding:70px 0 30px;}
-  .hero__eyebrow{font-size:13px;font-style:italic;color:var(--sage);margin-bottom:14px;}
-  .hero h1{font-size:clamp(1.8rem,4.2vw,2.6rem);max-width:20ch;}
-  .hero .placeholder{margin-top:16px;max-width:48ch;font-size:17px;}
 
-  .divider{display:flex;justify-content:center;padding:8px 0 30px;}
+/* ================= CONTENT ROWS ================= */
 
-  section{padding:26px 0;}
-  .section-title{font-size:1.2rem;margin-bottom:20px;}
-
-  .row{
+.row{
     display:grid;
-    grid-template-columns:0.85fr 1.15fr;
-    gap:24px;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
     align-items:center;
-    margin-bottom:36px;
-  }
-  .row:nth-child(even){grid-template-columns:1.15fr 0.85fr;}
-  .row:nth-child(even) .copy{order:2;}
-  @media (max-width:640px){
-    .row,.row:nth-child(even){grid-template-columns:1fr;}
-    .row:nth-child(even) .copy{order:0;}
-  }
-  .copy h3{font-size:1.05rem;}
-  .copy .placeholder{margin-top:8px;}
+    margin-bottom:65px;
+}
 
-  .notes-list div{
-    padding:10px 0;
-    border-bottom:1px solid var(--rule);
-    font-size:15px;
-    color:var(--ink-soft);
+.row:nth-child(even){
+    grid-template-columns:1fr 1fr;
+}
+
+.row:nth-child(even) .copy{
+    order:2;
+}
+
+
+.copy h3{
+    font-size:1.35rem;
+    color:var(--primary-green);
+    margin-bottom:10px;
+}
+
+.copy .placeholder{
+    margin-top:12px;
+    font-size:16px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    width:100%;
+    background:var(--primary-green);
+    color:white;
+    padding:45px 40px 60px;
+    font-size:14px;
     display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
     gap:10px;
-  }
-  .notes-list div:first-child{border-top:1px solid var(--rule);}
-  .notes-list span.mark{color:var(--blush);flex:none;}
+}
 
-  footer{padding:30px 0 50px;font-size:13.5px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-  footer .brand{font-family:"Fraunces",serif;font-size:15px;color:var(--ink);}
+footer .brand{
+    font-family:"Fraunces",serif;
+    font-size:16px;
+    color:white;
+}
+
+
+@media(max-width:800px){
+
+    .row,
+    .row:nth-child(even){
+        grid-template-columns:1fr;
+    }
+
+    .row:nth-child(even) .copy{
+        order:0;
+    }
+
+    .img-slot img{
+        height:auto;
+    }
+
+}
 </style>
 </head>
 <body>
 
-<header class="hero wrap">
-  <h1>Remote Sensing on NAIP Imagery for Lawn Modeling</h1>
-  <span class="placeholder">Creating a workflow to map lawns in residential neighborhoords and analyze demographics</span>
+<header class="hero">
+  <div class="wrap">
+
+    <h1>Remote Sensing on NAIP Imagery for Lawn Modeling</h1>
+    <span class="placeholder">Creating a workflow to map lawns in residential neighborhoords and analyze demographics</span>
+  </div>
 </header>
 
 <div class="wrap"><div class="divider">

@@ -8,218 +8,227 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,500;0,9..144,600;1,9..144,450;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --moss-950:#1b3226;
-    --moss-800:#2b4a38;
-    --fern:#5c7d5a;
-    --paper:#f4efe1;
-    --clay:#b06a45;
-    --gold:#c99a4e;
-    --ink:#26241a;
-    --ink-soft:#5a5642;
-    --rule:rgba(38,36,26,0.14);
-  }
+:root{
+    --primary-green:#145a32;
+    --dark-green:#0f3d22;
+    --white:#ffffff;
+    --paper:#ffffff;
+    --ink:#212529;
+    --ink-soft:#6c757d;
+    --accent:#c2795f;
+    --rule:rgba(0,0,0,0.12);
+}
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
     margin:0;
-    background:var(--paper);
+    background:#ffffff;
     color:var(--ink);
-    font-family:"Source Serif 4", Georgia, serif;
+    font-family:"Lato", Arial, sans-serif;
     font-size:17px;
     line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3{
-    font-family:"Fraunces", Georgia, serif;
-    font-weight:500;
-    letter-spacing:-0.01em;
-    margin:0;
-  }
-  em, .placeholder{
-    font-style:italic;
-    color:var(--ink-soft);
-  }
-  .placeholder{
+}
+
+h1,h2,h3{
+    font-family:"Montserrat", Arial, sans-serif;
+    font-weight:700;
+    letter-spacing:0.02em;
+}
+
+img{
+    max-width:100%;
     display:block;
-    font-size:15px;
-    opacity:0.75;
-  }
-  a{color:inherit;}
-  img{max-width:100%;display:block;}
+}
 
-  .wrap{
-    max-width:880px;
-    margin:0 auto;
-    padding:0 32px;
-  }
-  @media (max-width:600px){
-    .wrap{padding:0 20px;}
-    body{font-size:16px;}
-  }
+.wrap{
+    max-width:1140px;
+    margin:auto;
+    padding:0 24px;
+}
 
-  /* leaf divider */
-  .leaf-divider{
+
+/* ================= HERO ================= */
+
+.hero{
+    background:#145a32;
+    color:white;
+    text-align:center;
+    padding:90px 0 70px;
+    position:relative;
+}
+
+.hero h1{
+    color:white;
+    text-transform:uppercase;
+    font-size:2.6rem;
+    margin-bottom:25px;
+}
+
+.hero .placeholder{
+    color:white;
+    opacity:0.9;
+    font-size:1.15rem;
+}
+
+
+/* smaller sprig */
+
+.hero__sprig{
+    width:45px;
+    height:90px;
+    margin:0 auto 20px;
+    display:block;
+}
+
+
+/* ================= DIVIDER ================= */
+
+.leaf-divider{
     display:flex;
     justify-content:center;
-    padding:6px 0;
-    opacity:0.65;
-  }
+    padding:25px 0;
+}
 
-  /* ---------- image placeholder ---------- */
-  .img-slot{
-    position:relative;
-    width:100%;
-    border-radius:6px;
-    border:1px solid var(--rule);
+.leaf-divider svg{
+    width:40px;
+    height:40px;
+}
+
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:70px 0;
+}
+
+.section-title{
+    text-align:center;
+    text-transform:uppercase;
+    color:#212529;
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+.section-sub{
+    text-align:center;
+    color:var(--ink-soft);
+    margin-bottom:40px;
+}
+
+
+/* ================= IMAGE CARDS ================= */
+
+.img-slot{
+    background:white;
+    border-radius:8px;
     overflow:hidden;
-    background:var(--paper);
+    border:1px solid var(--rule);
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
 .img-slot img{
     width:100%;
     height:auto;
-    display:block;
 }
 
 .img-slot__tag{
-    width:100%;
-    padding:10px 13px;
-    font-size:12.5px;
+    padding:12px;
+    font-size:13px;
     color:var(--ink-soft);
-    background:rgba(244,239,225,0.92);
 }
 
-  /* ---------- hero ---------- */
-  .hero{
-    position:relative;
-    padding:80px 0 44px;
-    overflow:hidden;
-  }
-  .hero__eyebrow{
-    font-size:13px;
-    font-style:italic;
-    color:var(--fern);
-    margin-bottom:16px;
-  }
-  .hero h1{
-    font-size:clamp(2rem, 4.6vw, 3.1rem);
-    max-width:16ch;
-    color:var(--moss-950);
-  }
-  .hero .placeholder{
-    margin-top:18px;
-    max-width:48ch;
-    font-size:17px;
-  }
-  .hero__sprig{
-    position:absolute;
-    top:20px; right:-30px;
-    width:180px;
-    opacity:0.5;
-  }
-  @media (max-width:700px){ .hero__sprig{display:none;} }
 
-  /* ---------- sections ---------- */
-  section{padding:46px 0;}
-  .section-title{
-    font-size:1.35rem;
-    margin-bottom:6px;
-    color:var(--moss-950);
-  }
-  .section-sub{
-    font-size:14.5px;
-    color:var(--ink-soft);
-    margin-bottom:26px;
-  }
+/* ================= METHODS ================= */
 
-  /* ---------- poster ---------- */
-  .poster__inner{
-    display:grid;
-    grid-template-columns:0.8fr 1.2fr;
-    gap:36px;
-    align-items:center;
-  }
-  @media (max-width:680px){ .poster__inner{grid-template-columns:1fr;} }
-  .poster__inner h2{font-size:1.4rem;max-width:20ch;color:var(--moss-950);}
-
-  /* ---------- methods ---------- */
-  .methods-list{
+.methods-list{
     display:flex;
     flex-direction:column;
-    gap:34px;
-  }
-  .method-row{
+    gap:45px;
+}
+
+.method-row{
     display:grid;
-    grid-template-columns:0.85fr 1.15fr;
-    gap:26px;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
     align-items:center;
-  }
-  .method-row:nth-child(even){grid-template-columns:1.15fr 0.85fr;}
-  .method-row:nth-child(even) .method-copy{order:2;}
-  @media (max-width:680px){
-    .method-row, .method-row:nth-child(even){grid-template-columns:1fr;}
-    .method-row:nth-child(even) .method-copy{order:0;}
-  }
-  .method-copy h3{
-    font-size:1.15rem;
-    color:var(--moss-950);
-  }
-  .method-copy .placeholder{margin-top:8px;}
+}
 
-  /* ---------- gallery ---------- */
-  .gallery-grid{
+.method-row:nth-child(even){
+    direction:rtl;
+}
+
+.method-row:nth-child(even) .method-copy{
+    direction:ltr;
+}
+
+.method-copy h3{
+    color:#145a32;
+    font-size:1.4rem;
+}
+
+.placeholder{
+    color:#6c757d;
+}
+
+
+/* ================= POSTER ================= */
+
+.poster__inner{
     display:grid;
-    grid-template-columns:1.3fr 1fr;
-    grid-template-rows:auto auto;
-    gap:18px;
-  }
-  .gallery-grid .g1{grid-row:1 / span 2;}
-  @media (max-width:680px){
-    .gallery-grid{grid-template-columns:1fr;}
-    .gallery-grid .g1{grid-row:auto;}
-  }
-  figure{margin:0;}
-  figcaption{margin-top:6px;}
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
 
-  /* ---------- notes ---------- */
-  .notes-list{
-    display:flex;
-    flex-direction:column;
-    gap:0;
-  }
-  .notes-list div{
-    padding:11px 0;
+
+/* ================= NOTES ================= */
+
+.notes-list div{
+    padding:15px 0;
     border-bottom:1px solid var(--rule);
-    font-size:15px;
-    color:var(--ink-soft);
-    display:flex;
-    gap:10px;
-  }
-  .notes-list div:first-child{border-top:1px solid var(--rule);}
-  .notes-list span.mark{color:var(--clay);flex:none;}
+    color:#6c757d;
+}
 
-  /* ---------- footer ---------- */
-  footer{
-    padding:36px 0 60px;
-    font-size:13.5px;
-    color:var(--ink-soft);
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  footer .brand{
-    font-family:"Fraunces", serif;
-    color:var(--moss-950);
-    font-size:15px;
-  }
+.notes-list span.mark{
+    color:#145a32;
+}
 
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--gold);
-    outline-offset:3px;
-  }
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#145a32;
+    color:white;
+    padding:40px 0;
+}
+
+footer .brand{
+    color:white;
+    font-weight:bold;
+}
+
+
+/* Mobile */
+
+@media(max-width:700px){
+
+.hero h1{
+    font-size:1.8rem;
+}
+
+.method-row,
+.poster__inner{
+    grid-template-columns:1fr;
+}
+
+}
 </style>
 </head>
 <body>
@@ -248,7 +257,6 @@
 <section class="poster">
   <div class="wrap poster__inner">
     <div class="img-slot img-slot--poster">
-      <span class="img-slot__tag">poster — "Brazilian Tropical Rainforest Dynamics under Deforestation"</span>
       <img src="assets/img/portfolio/CUPPPoster.png" alt="CUPPPoster">
 
     </div>
