@@ -124,28 +124,34 @@ section{
 
 
 /* ================= IMAGE CARDS ================= */
+/* ================= IMAGE CARDS ================= */
+
 
 .img-slot{
-    background:white;
+    width:75%;
     border-radius:8px;
-    overflow:hidden;
     border:1px solid var(--rule);
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    overflow:hidden;
+    background:white;
+    box-shadow:0 5px 18px rgba(0,0,0,0.10);
 }
 
 .img-slot img{
     width:100%;
     height:auto;
+    display:block;
+    object-fit:cover;
 }
 
 .img-slot__tag{
-    padding:12px;
+    padding:12px 15px;
     font-size:13px;
     color:var(--ink-soft);
+    background:white;
 }
-
-
-/* ================= METHODS ================= */
+.img-slot{
+    margin:auto;
+}/* ================= METHODS ================= */
 
 .methods-list{
     display:flex;
